@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+  <div class="col-12 my-3">
+    <button class="btn btn-success" (click)="onNewCourse()">New Course</button>
+    <hr>
+  </div>
+  <div class="col-12">
+    <ul class="list-group">
+      <app-course-item *ngFor="let courseEl of courses; let i = index"
+                        [course]="courseEl"
+                        [index]="i"
+
+      >
+      </app-course-item>
+    </ul>
+  </div>
+</div>

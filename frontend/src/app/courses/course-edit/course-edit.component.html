@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" *ngIf="courseForm">
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success m-1" [disabled]="!courseForm.valid">Save</button>
+          <button type="button" class="btn btn-danger m-1">Cancel</button>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control"
+            formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <input type="date" id="start_date" class="form-control"
+            formControlName="start_date">
+          </div>
+          <div class="form-group">
+            <label for="duration">Duration (in Months)</label>
+            <input type="number" id="duration" class="form-control"
+            formControlName="duration">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3" *ngIf="editMode">
+        <h5>Students Enrolled</h5>
+        <div class="col-12">
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let student of studentsEnrolled">
+              <div class="row">
+                <div class="col-10">
+                  {{ student.firstName }} - {{ student.lastName }}
+                </div>
+                <div class="col-2">
+                  <button type="button" class="btn btn-danger" (click)="onRemoveStudent(student._id)"> X</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <form (submit)="onStudentsAdd()">
+      <div class="row mt-3" *ngIf="editMode">
+          <div class="col-12">
+            <h5>Add Students</h5>
+          </div>
+          <div class="col-10">
+            <select name="students" class="form-control" multiple required [(ngModel)]="studentsToAdd">
+                <option *ngFor="let student of course.studentsNotAdded"
+                        [value]="student._id"
+                [innerHTML]="student.firstName+ ' '+student.lastName"></option>
+            </select>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-success">+</button>
+          </div>
+      </div>
+      </form>
+    </form>
+  </div>
+</div>
