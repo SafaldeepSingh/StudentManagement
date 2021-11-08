@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -17,7 +19,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(3000,()=>console.log('Server started at port-3000'))
+app.listen(process.env.PORT,()=>console.log('Server started at port-3000'))
 app.use('/students',checkAuth,studentsController)
 app.use('/users',usersController)
 app.use('/courses',checkAuth,coursesController)

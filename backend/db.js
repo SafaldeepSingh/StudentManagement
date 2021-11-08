@@ -1,5 +1,7 @@
+require('dotenv').config()
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://safaldeepsingh76:Uv1Ac6iJI44XWfqr@studentapp.jpxst.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',(err) => {
+mongoose.connect(process.env.MONGODB_URL,(err) => {
   if(!err){
   console.log("Mongodb connected")
   }else{

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 var router = express.Router();
 var jwt = require('jsonwebtoken');
@@ -11,9 +13,9 @@ router.post('/',(req,res)=> {
         if(!err){
             if(doc){
                 const token=jwt.sign({email: doc.email, userId: doc._id},
-                    'RP.yw2uc6bLQTquClFdeeiFWw.BEj8DBP2JEQXgTFtz9AF1gxzbmEn5bbEYwe3vwnM0OM',
-                    { expiresIn: "1h"});
-                res.status(200).json({status: "Success",token: token,expiresIn: 3600 });
+                    process.env.TOKEN_SECRET,
+                    { expiresIn: process.env.TOKEN_EXPIRES_IN+"h"});
+                res.status(200).json({status: "Success",token: token,expiresIn: process.env.TOKEN_EXPIRES_IN*3600 });
             }else{
                 res.json({ status: "failed",message:"Auth Failed"});
             }

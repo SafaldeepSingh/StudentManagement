@@ -15,6 +15,7 @@ export class LoginService{
     private http: HttpClient,
     private router: Router
   ) {
+    this.getAuthData();
   }
   login(email,password){
     this.http.post<{status:string,token:string,expiresIn:number}>(this.host,{email,password})
@@ -83,6 +84,7 @@ export class LoginService{
     if (!token || !expirationDate) {
       return;
     }
+    this.isAuth=true;
     return {
       token: token,
       expirationDate: new Date(expirationDate)
