@@ -67,8 +67,9 @@ export class CourseService{
       ,{name: course.name,start_date:course.start_date,duration: course.duration})
       .subscribe(data =>{
         if(data.status=="Success"){
-          this.courses.push(data.course);
-          this.coursesChanged.next(this.courses);
+          this.initCourses();
+          // this.courses.push(data.course);
+          // this.coursesChanged.next(this.courses);
         }else{
           alert("Something Went Wrong! Try Again")
         }

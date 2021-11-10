@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../course.service";
 import {formatDate} from "@angular/common";
 import {StudentService} from "../../students/student.service";
@@ -53,16 +53,17 @@ export class CourseEditComponent implements OnInit {
     let startDate = null;
     let duration = 0;
 
-    if(this.editMode){
+    if(this.editMode && this.course){
       name=this.course.name;
       startDate = this.course.start_date;
       duration=this.course.duration;
       this.studentsEnrolled = this.course.students;
     }
     this.courseForm = new FormGroup({
-      'name': new FormControl(name),
-      'start_date': new FormControl(startDate?formatDate(startDate, 'yyyy-MM-dd', 'en','UTC'):null),
-      'duration': new FormControl(duration),
+      'name': new FormControl(name,[Validators.required]),
+      'start_date': new FormControl(startDate?formatDate(startDate, 'yyyy-MM-dd', 'en','UTC'):null,
+        [Validators.required]),
+      'duration': new FormControl(duration,[Validators.required,Validators.min(1)]),
     });
   }
 
