@@ -69,7 +69,7 @@ router.delete("/:id",(req, res) => {
   if(!ObjectId.isValid(req.params.id))
     return res.status(400,`No record with given id: ${req.params.id}`)
   //Delete All Students Mappings with Course
-  CourseStudentMap.findOneAndRemove({studentId: req.params.id},(error,doc)=>{
+  CourseStudentMap.deleteMany({studentId: req.params.id},(error,doc)=>{
     if(!error){
       Student.findByIdAndRemove(req.params.id,(err,doc)=>{
         if(!err){res.status(200).json({

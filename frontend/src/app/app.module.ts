@@ -52,4 +52,6 @@ import {LoginService} from "./login/login.service";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

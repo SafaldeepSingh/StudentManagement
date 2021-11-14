@@ -31,7 +31,7 @@ export class StudentEditComponent implements OnInit {
           this.sForm.setValue({
             first_name: this.editedItem.firstName,
             last_name: this.editedItem.lastName,
-            dob: formatDate(this.editedItem.dob, 'yyyy-MM-dd', 'en')
+            dob: formatDate(this.editedItem.dob, 'yyyy-MM-dd', 'en','UTC')
           })
         }
       );

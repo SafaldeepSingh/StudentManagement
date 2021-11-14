@@ -35,7 +35,10 @@ export class LoginService{
             this.router.navigate(['/courses'])
           }
 
-        }else{
+        }else if(data.status=="wrong_credentials"){
+          alert("Wrong Username or password! Please Try Again")
+        }
+        else{
           alert("Something Went Wrong!");
         }
       });

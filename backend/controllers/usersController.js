@@ -17,7 +17,7 @@ router.post('/',(req,res)=> {
                     { expiresIn: process.env.TOKEN_EXPIRES_IN+"h"});
                 res.status(200).json({status: "Success",token: token,expiresIn: process.env.TOKEN_EXPIRES_IN*3600 });
             }else{
-                res.json({ status: "failed",message:"Auth Failed"});
+                res.json({ status: "wrong_credentials"});
             }
         }else{
             res.json({status: "failed",message:"Contact Admin"});
